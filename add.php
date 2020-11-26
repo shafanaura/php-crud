@@ -14,19 +14,19 @@
             <table width="25%">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Nama Produk</label>
-                <input type="text" class="form-control" name="nama_produk">
+                <input type="text" class="form-control" name="nama_produk" required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Keterangan</label>
-                <input type="text-area" class="form-control" name="keterangan">
+                <input type="text-area" class="form-control" name="keterangan" required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Harga</label>
-                <input type="number" class="form-control" name="harga">
+                <input type="number" class="form-control" name="harga" required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Jumlah</label>
-                <input type="number" class="form-control" name="jumlah">
+                <input type="number" class="form-control" name="jumlah" required>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success float-right" name="Submit" value="Add">Add</button>
@@ -38,11 +38,11 @@
 
     // Check If form submitted, insert form data into users table.
     if(isset($_POST['Submit'])) {
-        $nama_produk = $_POST['nama_produk'];
-        $keterangan = $_POST['keterangan'];
-        $harga = $_POST['harga'];
-        $jumlah = $_POST['jumlah'];
-
+        $nama_produk = htmlspecialchars ($_POST['nama_produk']);
+        $keterangan = htmlspecialchars ($_POST['keterangan']);
+        $harga = htmlspecialchars ($_POST['harga']);
+        $jumlah = htmlspecialchars ($_POST['jumlah']);
+        
         // include database connection file
         include_once("config.php");
 
@@ -50,7 +50,10 @@
         $result = mysqli_query($mysqli, "INSERT INTO produk(nama_produk,keterangan,harga,jumlah) VALUES('$nama_produk','$keterangan','$harga','$jumlah')");
 
         // Show message when user added
-        echo "User added successfully. <a href='index.php'>View Users</a>";
+        echo "<script>
+                alert('Data Berhasil Ditambahkan!');
+                document.location.href = 'index.php';
+            </script>";
     }
     ?>
 </body>

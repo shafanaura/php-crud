@@ -35,7 +35,15 @@ $result = mysqli_query($mysqli, "SELECT * FROM produk ORDER BY id DESC");
             echo "<td>".$user_data['keterangan']."</td>";
             echo "<td>".$user_data['harga']."</td>";    
             echo "<td>".$user_data['jumlah']."</td>";    
-            echo "<td><a href='edit.php?id=$user_data[id]'><button class='btn btn-warning'>Edit</button></a> | <a href='delete.php?id=$user_data[id]'><button class='btn btn-danger'>Hapus</button></a></td></tr>";        
+            echo "<td>
+                    <a href='edit.php?id=$user_data[id]'>
+                        <button class='btn btn-warning'>Edit</button>
+                    </a> | 
+                    <a href='delete.php?id=$user_data[id]'>
+                        <button class='btn btn-danger'>Hapus</button>
+                    </a>
+                </td>
+                </tr>";        
         }
         ?>
             </tbody>

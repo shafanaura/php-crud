@@ -7,16 +7,17 @@ if(isset($_POST['update']))
 {   
     $id = $_POST['id'];
 
-    $nama_produk=$_POST['nama_produk'];
-    $keterangan=$_POST['keterangan'];
-    $harga=$_POST['harga'];
-    $jumlah=$_POST['jumlah'];
+    $nama_produk = htmlspecialchars ($_POST['nama_produk']);
+    $keterangan = htmlspecialchars ($_POST['keterangan']);
+    $harga = htmlspecialchars ($_POST['harga']);
+    $jumlah = htmlspecialchars ($_POST['jumlah']);
 
     // update user data
     $result = mysqli_query($mysqli, "UPDATE produk SET nama_produk='$nama_produk',keterangan='$keterangan', harga='$harga',jumlah='$jumlah' WHERE id=$id");
 
     // Redirect to homepage to display updated user in list
     header("Location: index.php");
+    
 }
 ?>
 <?php
@@ -46,28 +47,28 @@ while($user_data = mysqli_fetch_array($result))
 <body>
     <div class="container">
         <a href="index.php"><button class="btn btn-primary mb-4 mt-4">Home</button></a>
-        
+
         <form name="update_user" method="post" action="edit.php">
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Nama Produk</label>
-                    <input type="text" class="form-control" name="nama_produk" value=<?php echo $nama_produk;?>>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Keterangan</label>
-                    <input type="text" class="form-control" name="keterangan" value=<?php echo $keterangan;?>>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Harga</label>
-                    <input type="text" class="form-control" name="harga" value=<?php echo $harga;?>>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Jumlah</label>
-                    <input type="text" class="form-control" name="jumlah" value=<?php echo $jumlah;?>>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" class="form-control" name="id" value=<?php echo $_GET['id'];?>>
-                    <button type="hidden" class="btn btn-success float-right" name="update" value="Update">Update</button>
-                </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nama Produk</label>
+                <input type="text" class="form-control" name="nama_produk" value=<?php echo $nama_produk;?>>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Keterangan</label>
+                <input type="text" class="form-control" name="keterangan" value=<?php echo $keterangan;?>>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Harga</label>
+                <input type="text" class="form-control" name="harga" value=<?php echo $harga;?>>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Jumlah</label>
+                <input type="text" class="form-control" name="jumlah" value=<?php echo $jumlah;?>>
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="id" value=<?php echo $_GET['id'];?>>
+                <button type="hidden" class="btn btn-success float-right" name="update" value="Update">Update</button>
+            </div>
         </form>
     </div>
 </body>
